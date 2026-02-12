@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overtrading Stop · Demo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0b1a2a 0%, #0e1f2f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            margin: 0;
+        }
+
+        .trading-card {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(18, 30, 41, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #2c4056;
+            border-radius: 36px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 25px 40px -10px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+            transition: all 0.2s;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.8rem;
+        }
+
+        .stop-sign {
+            background: #c62e3c;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 22px;
+            box-shadow: 0 6px 0 #681a21, 0 10px 20px rgba(198,46,60,0.25);
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #f0f6fc;
+            margin: 0;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .sub {
+            color: #a3c2d9;
+            margin-top: 6px;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            border-left: 4px solid #3e6a8b;
+            padding-left: 14px;
+            background: rgba(44, 74, 100, 0.2);
+            border-radius: 0 12px 12px 0;
+            line-height: 1.5;
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .stat-block {
+            background: #0f1e28;
+            border-radius: 24px;
+            padding: 1.2rem 1.4rem;
+            flex: 1 1 160px;
+            border: 1px solid #2c4455;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4), 0 8px 12px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            color: #80b5d6;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #e2ecf5;
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .stat-unit {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #99bdd4;
+            margin-left: 6px;
+        }
+
+        .badge {
+            background: #254a5e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #d2ecff;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .progress-section {
+            background: #0e1c26;
+            border-radius: 28px;
+            padding: 1.3rem 1.6rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #38586b;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #bfe0f0;
+        }
+
+        .progress-bar-bg {
+            background: #0a141c;
+            height: 24px;
+            border-radius: 40px;
+            border: 1px solid #29485a;
+            overflow: hidden;
+            display: flex;
+            box-shadow: inset 0 3px 6px #00000030;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6ec3e0, #3f9ec2);
+            border-radius: 40px;
+            box-shadow: 0 0 15px #2894c0;
+            transition: width 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        .trade-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0b1821;
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            margin-bottom: 1.8rem;
+            border: 1px solid #2c5a6e;
+        }
+
+        .trade-label {
+            font-weight: 500;
+            color: #c1e2f0;
+        }
+
+        .trade-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d8f0ff;
+            background: #1c3846;
+            padding: 0.1rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 1px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .btn {
+            border: none;
+            background: #213b49;
+            padding: 0.85rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ecf9ff;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 5px 0 #0f1a20;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #0f1a20;
+        }
+
+        .btn.primary {
+            background: #2d7ea0;
+            border-bottom: 3px solid #154455;
+            box-shadow: 0 7px 0 #0c3342;
+            flex: 2;
+        }
+
+        .btn.warning {
+            background: #b6493c;
+            border-bottom: 3px solid #6f2d26;
+            box-shadow: 0 7px 0 #4f211c;
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            transform: none;
+            box-shadow: 0 5px 0 #0f1a20;
+            pointer-events: none;
+            filter: grayscale(0.6);
+        }
+
+        .overtrading-active {
+            background: #39131a;
+            border: 1px solid #dc5a5a;
+            color: #ffcfcf;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse-red 1.8s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { background-color: #441d24; border-color: #c44a4a; }
+            50% { background-color: #662c36; border-color: #ff7a7a; box-shadow: 0 0 12px #b33030; }
+            100% { background-color: #441d24; border-color: #c44a4a; }
+        }
+
+        .reset-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            justify-content: flex-end;
+        }
+
+        .small-note {
+            color: #a0bed0;
+            font-size: 0.75rem;
+            margin-top: 1.4rem;
+            border-top: 1px dashed #315569;
+            padding-top: 1.2rem;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        .blocked-msg {
+            font-weight: 600;
+            margin-left: 6px;
+            color: #ffb0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="trading-card">
+        <!-- Header with stop hand sign -->
+        <div class="header">
+            <div class="stop-sign">⏹</div>
+            <h1>Overtrading Stop</h1>
+        </div>
+        <div class="sub">
+            ⚠️  Simulated risk guard — limits trades within a time window. Prevents revenge trading & overtrading.
+        </div>
+
+        <!-- Stats: daily limit & remaining -->
+        <div class="stats-grid">
+            <div class="stat-block">
+                <div class="stat-label">📊 DAILY LIMIT</div>
+                <div class="stat-value">
+                    <span id="maxTradeLimit">5</span><span class="stat-unit">trades</span>
+                </div>
+                <div class="badge" style="margin-top: 8px;">max / day</div>
+            </div>
+            <div class="stat-block">
+                <div class="stat-label">⏳ REMAINING</div>
+                <div class="stat-value">
+                    <span id="remainingTrades">5</span><span class="stat-unit">left</span>
+                </div>
+                <div class="badge" style="margin-top: 8px; background: #2d5959;">cooling ⏱️</div>
+            </div>
+        </div>
+
+        <!-- PROGRESS BAR – visual overtrading thermometer -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <span>🧾 Trade usage today</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progressFill" class="progress-fill" style="width: 0%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; color: #9fc3d9;">
+                <span style="display: flex; gap: 5px;">🟢 active</span>
+                <span style="display: flex; gap: 5px;">🔴 stop threshold (5/5)</span>
+            </div>
+        </div>
+
+        <!-- CURRENT TRADE COUNT + BLOCK MESSAGE -->
+        <div class="trade-counter" id="tradeCounterPanel">
+            <span class="trade-label">📈 Today's trades executed</span>
+            <span class="trade-count" id="tradeCountDisplay">0</span>
+            <div id="overtradeBlockIndicator" style="display: none;" class="overtrading-active">
+                ⛔ STOPPED
+            </div>
+        </div>
+
+        <!-- MAIN ACTION BUTTONS -->
+        <div class="actions">
+            <button class="btn primary" id="tradeBtn">➕ EXECUTE TRADE</button>
+            <button class="btn" id="simulateWinBtn" style="background: #2b5f55;">📈 WIN</button>
+            <button class="btn warning" id="resetBtn">⟲ RESET DAY</button>
+        </div>
+        
+        <!-- Contextual warning / stop message -->
+        <div id="stopMessageContainer" style="min-height: 48px; margin-top: 16px;">
+            <div id="activeStopBanner" style="display: none; background: #8f2c37; border-radius: 40px; padding: 0.8rem 1.5rem; color: white; font-weight: 500; box-shadow: 0 0 12px #c04545;">
+                🛑 OVERTRADING STOP ENGAGED — No more trades allowed. Reset to continue.
+            </div>
+        </div>
+
+        <!-- hidden reset info and extra hint -->
+        <div class="reset-area">
+            <span style="color: #82b5cc; font-size: 0.9rem;">⏲️  Limit: 5 trades / day · Overtrading stop = block</span>
+        </div>
+        <div class="small-note">
+            💡 Demo app: each trade increases counter. When you reach 5 trades, overtrading stop blocks further execution.
+            <span style="display: block; margin-top: 6px;">⚡ 'Win' simulates a successful trade — also counts toward limit (realistic risk).</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- Overtrading stop app state ----------
+            const MAX_TRADES = 5;               // daily limit
+            let currentTrades = 0;              // executed trades today
+            let stopEngaged = false;            // overtrading block active
+
+            // ---------- DOM elements ----------
+            const tradeBtn = document.getElementById('tradeBtn');
+            const simulateWinBtn = document.getElementById('simulateWinBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const tradeCountDisplay = document.getElementById('tradeCountDisplay');
+            const remainingSpan = document.getElementById('remainingTrades');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const overtradeBlockIndicator = document.getElementById('overtradeBlockIndicator');
+            const activeStopBanner = document.getElementById('activeStopBanner');
+
+            // ---------- Helper: update UI from state ----------
+            function refreshUI() {
+                // 1. Update trade counter
+                tradeCountDisplay.textContent = currentTrades;
+
+                // 2. Remaining trades (never negative)
+                const remaining = Math.max(MAX_TRADES - currentTrades, 0);
+                remainingSpan.textContent = remaining;
+
+                // 3. Progress bar width and percent
+                let percent = (currentTrades / MAX_TRADES) * 100;
+                percent = Math.min(percent, 100);   // cap at 100%
+                progressFill.style.width = percent + '%';
+                progressPercent.textContent = Math.round(percent) + '%';
+
+                // 4. Manage overtrading stop condition
+                if (currentTrades >= MAX_TRADES) {
+                    stopEngaged = true;
+                } else {
+                    stopEngaged = false;
+                }
+
+                // 5. Update UI based on stopEngaged
+                if (stopEngaged) {
+                    // Show stop indicator in trade panel and banner
+                    overtradeBlockIndicator.style.display = 'flex';   // 'flex' because .overtrading-active uses flex
+                    activeStopBanner.style.display = 'block';
+                    
+                    // Disable both trade buttons (primary trade + win sim)
+                    tradeBtn.disabled = true;
+                    simulateWinBtn.disabled = true;
+                    
+                    // additional visual: dim the trade counter?
+                } else {
+                    // Hide stop indicators
+                    overtradeBlockIndicator.style.display = 'none';
+                    activeStopBanner.style.display = 'none';
+                    
+                    // Enable buttons
+                    tradeBtn.disabled = false;
+                    simulateWinBtn.disabled = false;
+                }
+
+                // update max limit display (static, but keep if changed in future)
+                document.getElementById('maxTradeLimit').innerText = MAX_TRADES;
+            }
+
+            // ---------- Add trade (increment) ----------
+            function addTrade(amount = 1) {
+                if (stopEngaged) {
+                    // Already stopped – do nothing (UI disabled anyway, but double-check)
+                    return;
+                }
+
+                let newCount = currentTrades + amount;
+                // cannot exceed max trades
+                if (newCount > MAX_TRADES) {
+                    newCount = MAX_TRADES;
+                }
+
+                currentTrades = newCount;
+                refreshUI();
+
+                // If we hit exactly MAX_TRADES, stop will engage automatically inside refreshUI
+                // log for demo
+                console.log(`Trade executed. Current trades: ${currentTrades}, stop: ${stopEngaged}`);
+            }
+
+            // ---------- Reset full day ----------
+            function resetDay() {
+                currentTrades = 0;
+                stopEngaged = false;   // reset stop
+                refreshUI();
+                console.log('Day reset. Trades cleared, overtrading stop released.');
+            }
+
+            // ---------- Attach event listeners ----------
+            tradeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!stopEngaged) {
+                    addTrade(1);
+                }
+            });
+
+            simulateWinBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!stopEngaged) {
+                    // Winning trade also counts as a trade → add 1
+                    addTrade(1);
+                    // Bonus: small haptic feedback (optional)
+                }
+            });
+
+            resetBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                resetDay();
+            });
+
+            // ---------- Initial render ----------
+            refreshUI();
+
+            // ---------- Extra: guarantee that disabled attribute matches stop ----------
+            // also ensure that progress fill shows correct initialization
+            window.addEventListener('load', function() {
+                // just double-check
+                refreshUI();
+            });
+        })();
+    </script>
+
+    <!-- subtle note: demo only, no server side -->
+</body>
+</html>
