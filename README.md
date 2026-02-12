@@ -1,4 +1,4 @@
-<img width="1835" height="1154" alt="image" src="https://github.com/user-attachments/assets/db8c0b3f-6da9-447e-adf5-214e181b00d8" /># Overtrading Stop – Trading Frequency Limiter Demo
+## Overtrading Stop – Trading Frequency Limiter Demo
 
 [![Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://html-preview.github.io/?url=https://github.com/yourusername/overtrading-stop/blob/main/index.html)
 [![Made with](https://img.shields.io/badge/Made%20with-HTML%20%7C%20CSS%20%7C%20JS-blue?style=for-the-badge)](#)
