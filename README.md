@@ -1,4 +1,4 @@
-# Overtrading Stop – Trading Frequency Limiter Demo
+<img width="1835" height="1154" alt="image" src="https://github.com/user-attachments/assets/db8c0b3f-6da9-447e-adf5-214e181b00d8" /># Overtrading Stop – Trading Frequency Limiter Demo
 
 [![Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://html-preview.github.io/?url=https://github.com/yourusername/overtrading-stop/blob/main/index.html)
 [![Made with](https://img.shields.io/badge/Made%20with-HTML%20%7C%20CSS%20%7C%20JS-blue?style=for-the-badge)](#)
@@ -17,7 +17,7 @@
 
 >  **Educational Demo Only** – This is not a trading platform or financial advisor. It's a visual prototype for risk management concepts.
 
-![Demo Screenshot](https://via.placeholder.com/700x400?text=Overtrading+Stop+Demo+Interface)
+<img width="1835" height="1154" alt="image" src="https://github.com/user-attachments/assets/fa8b2f04-4918-4846-81f8-c548f59d7b61" />
 
 ---
 
@@ -196,18 +196,18 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-**Your Name** – [@yourtwitter](https://twitter.com/yourtwitter) – email@example.com
 
-Project Link: [https://github.com/yourusername/overtrading-stop](https://github.com/yourusername/overtrading-stop)
+Om Gedam
 
----
+GitHub: @itsomg134
 
-<p align="center">
-  <strong>Trade smart. Stay disciplined. Know your limits.</strong><br>
-  <sub> This app won't stop you from overtrading IRL – but hopefully it inspires better habits.</sub>
-</p>
+Email: omgedam123098@gmail.com
 
----
+Twitter (X): @omgedam
+
+LinkedIn: Om Gedam
+
+Portfolio: https://ogworks.lovable.app
 
 ## 🔮 Future Roadmap
 
