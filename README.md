@@ -1,4 +1,4 @@
-# 🛑 Overtrading Stop – Trading Frequency Limiter Demo
+# Overtrading Stop – Trading Frequency Limiter Demo
 
 [![Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://html-preview.github.io/?url=https://github.com/yourusername/overtrading-stop/blob/main/index.html)
 [![Made with](https://img.shields.io/badge/Made%20with-HTML%20%7C%20CSS%20%7C%20JS-blue?style=for-the-badge)](#)
@@ -10,39 +10,36 @@
   <img src="https://img.shields.io/badge/Focus-Risk%20Management-important" alt="Focus">
 </p>
 
----
 
-## 📋 Overview
+## Overview
 
 **Overtrading Stop** is a lightweight, browser-based demo application that simulates a **trade frequency limiter** – a essential risk management tool for traders. It visually demonstrates how an automated stop mechanism can prevent overtrading and revenge trading by enforcing a strict daily trade limit.
 
-> ⚠️ **Educational Demo Only** – This is not a trading platform or financial advisor. It's a visual prototype for risk management concepts.
+>  **Educational Demo Only** – This is not a trading platform or financial advisor. It's a visual prototype for risk management concepts.
 
 ![Demo Screenshot](https://via.placeholder.com/700x400?text=Overtrading+Stop+Demo+Interface)
 
 ---
 
-## ✨ Features
+##  Features
 
-- **🎯 Daily Trade Limit** – Preconfigured with a 5-trade maximum per day
-- **📊 Real-time Progress Tracking** – Visual progress bar and remaining trades counter
-- **🛑 Automatic Stop Engagement** – Instantly blocks new trades when limit is reached
-- **🔄 One-Click Reset** – Simulate a new trading day
-- **🎮 Simulated Trade Actions** – "Execute Trade" and "Win" buttons for realistic interaction
-- **🎨 Professional UI** – Dark mode, cyberpunk-inspired trading dashboard aesthetic
-- **📱 Fully Responsive** – Works on desktop, tablet, and mobile
+- ** Daily Trade Limit** – Preconfigured with a 5-trade maximum per day
+- ** Real-time Progress Tracking** – Visual progress bar and remaining trades counter
+- ** Automatic Stop Engagement** – Instantly blocks new trades when limit is reached
+- ** One-Click Reset** – Simulate a new trading day
+- ** Simulated Trade Actions** – "Execute Trade" and "Win" buttons for realistic interaction
+- ** Professional UI** – Dark mode, cyberpunk-inspired trading dashboard aesthetic
+- ** Fully Responsive** – Works on desktop, tablet, and mobile
 
----
+## Live Demo
 
-## 🚀 Live Demo
-
-**[👉 Try the Live Demo](https://html-preview.github.io/?url=https://github.com/yourusername/overtrading-stop/blob/main/index.html)**
+**[ Try the Live Demo](https://html-preview.github.io/?url=https://github.com/yourusername/overtrading-stop/blob/main/index.html)**
 
 *Click the link above to see the app in action instantly – no installation required!*
 
----
 
-## 🖥️ Installation & Usage
+
+## Installation & Usage
 
 ### Option 1: One-Click Web Run
 1. Download the `index.html` file
@@ -64,7 +61,7 @@ open index.html  # or double-click the file
 
 ---
 
-## 🎮 How It Works
+## How It Works
 
 ```javascript
 // Core logic (simplified)
@@ -79,7 +76,7 @@ function executeTrade() {
   }
   
   if (currentTrades >= MAX_TRADES) {
-    stopEngaged = true;  // 🔴 Overtrading stop activated
+    stopEngaged = true;  //  Overtrading stop activated
     disableTradingButtons();
   }
 }
@@ -95,7 +92,7 @@ function executeTrade() {
 
 ---
 
-## 🎨 Interface Components
+##  Interface Components
 
 | Component | Description |
 |----------|-------------|
@@ -106,9 +103,8 @@ function executeTrade() {
 | **Stop Indicator** | Pulsing red alert when overtrading is blocked |
 | **Action Buttons** | Trade, Win (counts as trade), Reset Day |
 
----
 
-## ⚙️ Customization
+## Customization
 
 Easily modify the daily trade limit:
 
@@ -118,27 +114,27 @@ const MAX_TRADES = 5;  // Change this to any number
 ```
 
 **Other tweakable parameters:**
-- 🎨 Color scheme – Edit CSS variables in `style` block
-- ⏱️ Cooldown behavior – Modify conditional logic in `addTrade()`
-- 📈 Additional metrics – Extend the `stat-block` components
+-  Color scheme – Edit CSS variables in `style` block
+-  Cooldown behavior – Modify conditional logic in `addTrade()`
+-  Additional metrics – Extend the `stat-block` components
 
 ---
 
-## 🧠 Why Overtrading Protection?
+## Why Overtrading Protection?
 
 > "The market will always be there tomorrow. Capital might not."
 
 **Overtrading** is one of the most common reasons retail traders blow up accounts. Common causes:
-- 😤 Revenge trading after losses
-- 🎲 Gambling mentality vs. edge-based trading  
-- 📱 24/7 mobile access with zero friction
-- 📊 Lack of personal risk limits
+-  Revenge trading after losses
+-  Gambling mentality vs. edge-based trading  
+-  24/7 mobile access with zero friction
+-  Lack of personal risk limits
 
 This demo visualizes how **automated hard stops** can enforce discipline and preserve capital.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 overtrading-stop/
@@ -154,27 +150,27 @@ overtrading-stop/
 
 ---
 
-## 🌐 Browser Support
+##  Browser Support
 
 | Browser | Support |
 |---------|---------|
-| Chrome  | ✅ Full |
-| Firefox | ✅ Full |
-| Safari  | ✅ Full |
-| Edge    | ✅ Full |
-| Opera   | ✅ Full |
-| Mobile  | ✅ Responsive |
+| Chrome  |   Full |
+| Firefox |   Full |
+| Safari  |   Full |
+| Edge    |   Full |
+| Opera   |   Full |
+| Mobile  |  Responsive |
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Feel free to:
 
-- 🐛 Report bugs
-- 💡 Suggest features (e.g., time-based cooldown, custom limits UI)
-- 🎨 Improve design
-- 📝 Enhance documentation
+-  Report bugs
+-  Suggest features (e.g., time-based cooldown, custom limits UI)
+-  Improve design
+-  Enhance documentation
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -184,7 +180,7 @@ Contributions are welcome! Feel free to:
 
 ---
 
-## 📜 License
+##  License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
 
@@ -208,23 +204,17 @@ Project Link: [https://github.com/yourusername/overtrading-stop](https://github.
 
 <p align="center">
   <strong>Trade smart. Stay disciplined. Know your limits.</strong><br>
-  <sub>🛑 This app won't stop you from overtrading IRL – but hopefully it inspires better habits.</sub>
+  <sub> This app won't stop you from overtrading IRL – but hopefully it inspires better habits.</sub>
 </p>
 
 ---
 
 ## 🔮 Future Roadmap
 
-- [ ] ⏲️ **Time-based cooldown** – Block trades for X minutes after hitting limit
-- [ ] 📅 **Weekly/Monthly limits** – Multiple timeframe tracking
-- [ ] 📈 **Trade journal export** – CSV download of session
-- [ ] 🎚️ **Customizable limit slider** – User-defined daily max
-- [ ] 🌙 **Multiple themes** – Light mode, colorblind friendly
-- [ ] 📊 **Win/Loss tracking** – Separate from trade count
-- [ ] 🔊 **Sound alerts** – Optional audio warnings
-
----
-
-<p align="center">
-  Made with ❤️ for traders who want to protect their capital
-</p>
+- [ ] **Time-based cooldown** – Block trades for X minutes after hitting limit
+- [ ] **Weekly/Monthly limits** – Multiple timeframe tracking
+- [ ] **Trade journal export** – CSV download of session
+- [ ] **Customizable limit slider** – User-defined daily max
+- [ ] **Multiple themes** – Light mode, colorblind friendly
+- [ ] **Win/Loss tracking** – Separate from trade count
+- [ ] **Sound alerts** – Optional audio warnings
